@@ -1,0 +1,42 @@
+<h1 align="center">Movie Reviews</h1>
+ <%= stylesheet_link_tag 'mystyles' %>
+<br/>
+<br/>
+<br/>
+<% if @movies.blank? %>
+ <div id="t" align="center" >There are no movies are present.</div>
+ <% else %>
+ <table align="center" width="65%" cellpadding="2" border=1>
+
+  <tr>
+    <th>
+	<div id="col_names">
+	<font face="Geneva, Arial, Helvetica, san-serif">Movie Title
+	</font></div>
+	</th> 
+	<th>
+	<div id="col_names">
+	<font face="Geneva, Arial, Helvetica, san-serif">Genre
+	</font></div></th>
+  </tr>
+
+<% @movies.each do |movie| %>
+<tr>
+	<td>
+		<div id="tab">
+		<%= link_to movie.title, movie ,{:style=>'color:#e6e6e6;'}%>
+		</div>
+	</td>
+	<td><div id="gen">
+		 <%= movie.genre %></div>
+	</td>
+		
+</tr>
+   <% end %>
+</table>
+
+<br />
+<% end %>
+<div id="footer">
+<p><%= link_to "Add New Movie", new_movie_path ,{:style=>'color:#B45F04;' }%></p>
+</div>

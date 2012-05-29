@@ -1,0 +1,34 @@
+
+<h2>Movie name:</h2>
+
+<div id="gen">
+  <%= @movie.title %>
+</div>
+ <%= stylesheet_link_tag 'mystyles' %>
+ <h2 >Movie genre:  </h2><div id="gen"><%= @movie.genre%></div>
+
+  <h3 >Reviews</h3>
+
+<% @movie.reviews.each do |review| %>
+
+<p><div id="gen"> <%= review.text %></div> </p>
+
+<span class="review"">
+<p> <%= time_ago_in_words review.created_at %>ago</p>
+</span>
+<p>
+<%= link_to "delete review",[@movie,review],:method=>:delete,:class=>"review",:confirm=>"Are you sure?" %>
+
+<% end %>
+
+<%= form_for [@movie,@movie.reviews.build] do |f| %>
+<p> <%= f.text_area :text,:size =>'40*10' %></p>
+<p><%= f.submit "Submit Review" %></p>
+<% end %>
+<p>
+<%= link_to 'Back', movies_path ,{:style=>'color:#B45F04;' }%>|
+<%= link_to 'Edit', edit_movie_path(@movie),{:style=>'color:#B45F04;' } %> |
+<%= link_to "Delete",[@movie],:method=>:delete,:class=>"review",:confirm=>"Are you sure?" %>
+
+</p>
+
